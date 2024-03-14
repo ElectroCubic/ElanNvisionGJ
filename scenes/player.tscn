@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://gh748f5eykud"]
+[gd_scene load_steps=26 format=3 uid="uid://gh748f5eykud"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_eybfr"]
 [ext_resource type="Texture2D" uid="uid://btg3j016tgxbu" path="res://graphics/Player/Normal Player Blink 4.png" id="2_4aw5w"]
@@ -11,6 +11,17 @@
 [ext_resource type="Texture2D" uid="uid://dgfp67iuem4yr" path="res://graphics/Player/Normal Player Idle 2.png" id="9_c55ip"]
 [ext_resource type="Texture2D" uid="uid://ckkkq5f338bw3" path="res://graphics/Player/Normal Player Idle 4.png" id="10_s8xcf"]
 [ext_resource type="Texture2D" uid="uid://bltmmquc832xl" path="res://graphics/Player/Normal Player Idle 3.png" id="11_brls6"]
+[ext_resource type="Texture2D" uid="uid://r5eboka3dynk" path="res://graphics/Darkside/Darkside Blink 3.png" id="12_uym3o"]
+[ext_resource type="Texture2D" uid="uid://cg1dboxbq7sgt" path="res://graphics/Darkside/Darkside Idle 6.png" id="13_8ik8b"]
+[ext_resource type="Texture2D" uid="uid://ce205kb1brfeg" path="res://graphics/Darkside/Darkside Idle 1.png" id="14_kxvhy"]
+[ext_resource type="Texture2D" uid="uid://dlwo80538phdx" path="res://graphics/Darkside/Darkside Blink 1.png" id="15_indp2"]
+[ext_resource type="Texture2D" uid="uid://njqlhkosw2i2" path="res://graphics/Darkside/Darkside Blink 2.png" id="16_hv1t3"]
+[ext_resource type="Texture2D" uid="uid://b0g4oprytxxbd" path="res://graphics/Darkside/Darkside Blink 4.png" id="17_ab5we"]
+[ext_resource type="Texture2D" uid="uid://1g5fddbishdh" path="res://graphics/Darkside/Darkside Blink 5.png" id="18_okel4"]
+[ext_resource type="Texture2D" uid="uid://bwwsyu8wr6xe5" path="res://graphics/Darkside/Darkside Idle 2.png" id="19_mldc1"]
+[ext_resource type="Texture2D" uid="uid://vq8fm6qsw4jk" path="res://graphics/Darkside/Darkside Idle 4.png" id="20_1pggt"]
+[ext_resource type="Texture2D" uid="uid://ba7mtlr0kaij7" path="res://graphics/Darkside/Darkside Idle 7.png" id="21_j08dt"]
+[ext_resource type="Texture2D" uid="uid://c1i2mkip2iwir" path="res://graphics/Darkside/Darkside Idle 5.png" id="22_wwvbw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1gova"]
 animations = [{
@@ -92,8 +103,96 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_d12od")
 }],
-"loop": true,
+"loop": false,
 "name": &"Move",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vi0lq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_uym3o")
+}],
+"loop": false,
+"name": &"Dark_Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_8ik8b")
+}],
+"loop": false,
+"name": &"Dark_Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 12.0,
+"texture": ExtResource("14_kxvhy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_indp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hv1t3")
+}, {
+"duration": 12.0,
+"texture": ExtResource("12_uym3o")
+}, {
+"duration": 0.5,
+"texture": ExtResource("17_ab5we")
+}, {
+"duration": 12.0,
+"texture": ExtResource("18_okel4")
+}, {
+"duration": 0.5,
+"texture": ExtResource("17_ab5we")
+}, {
+"duration": 12.0,
+"texture": ExtResource("12_uym3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hv1t3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_indp2")
+}, {
+"duration": 12.0,
+"texture": ExtResource("14_kxvhy")
+}, {
+"duration": 0.5,
+"texture": ExtResource("19_mldc1")
+}, {
+"duration": 12.0,
+"texture": ExtResource("20_1pggt")
+}, {
+"duration": 8.0,
+"texture": ExtResource("21_j08dt")
+}, {
+"duration": 8.0,
+"texture": ExtResource("19_mldc1")
+}, {
+"duration": 12.0,
+"texture": ExtResource("14_kxvhy")
+}],
+"loop": true,
+"name": &"Dark_Idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_wwvbw")
+}],
+"loop": false,
+"name": &"Dark_Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_kxvhy")
+}],
+"loop": false,
+"name": &"Dark_Move",
 "speed": 5.0
 }]
 
@@ -104,6 +203,7 @@ height = 96.0
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 floor_stop_on_slope = false
+platform_on_leave = 2
 script = ExtResource("1_eybfr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -113,8 +213,16 @@ zoom = Vector2(1.2, 1.2)
 position = Vector2(-2, -2)
 scale = Vector2(0.148765, 0.139946)
 sprite_frames = SubResource("SpriteFrames_1gova")
-animation = &"Move"
+animation = &"Idle"
 autoplay = "Idle"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6.82267)
+scale = Vector2(0.188978, 0.191688)
+sprite_frames = SubResource("SpriteFrames_vi0lq")
+animation = &"Dark_Idle"
+autoplay = "Dark_Idle"
+frame_progress = 0.795269
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cddh4")

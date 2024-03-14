@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://doutnrxet4a8a"]
+
+[ext_resource type="Script" path="res://scripts/snow_ball.gd" id="1_kvt6t"]
+[ext_resource type="Texture2D" uid="uid://dr6vs1nuck0o5" path="res://graphics/snowBallBig.png" id="1_x0py4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g40tu"]
+radius = 71.0211
+
+[node name="SnowBall" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_kvt6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_x0py4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g40tu")
+
+[node name="SelfDestructTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]
