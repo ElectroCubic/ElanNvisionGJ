@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://gh748f5eykud"]
+[gd_scene load_steps=32 format=3 uid="uid://gh748f5eykud"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_eybfr"]
 [ext_resource type="Texture2D" uid="uid://btg3j016tgxbu" path="res://graphics/Player/Normal Player Blink 4.png" id="2_4aw5w"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://vq8fm6qsw4jk" path="res://graphics/Darkside/Darkside Idle 4.png" id="20_1pggt"]
 [ext_resource type="Texture2D" uid="uid://ba7mtlr0kaij7" path="res://graphics/Darkside/Darkside Idle 7.png" id="21_j08dt"]
 [ext_resource type="Texture2D" uid="uid://c1i2mkip2iwir" path="res://graphics/Darkside/Darkside Idle 5.png" id="22_wwvbw"]
+[ext_resource type="Texture2D" uid="uid://f06dk17a1l4k" path="res://graphics/Items/Fire_particle.png" id="23_jjrum"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1gova"]
 animations = [{
@@ -200,11 +201,44 @@ animations = [{
 radius = 38.0
 height = 96.0
 
+[sub_resource type="Curve" id="Curve_uekcj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.984906, 0), -2.62979, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_64mo5"]
+curve = SubResource("Curve_uekcj")
+
+[sub_resource type="Curve" id="Curve_aiepy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.05809, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p7w8t"]
+curve = SubResource("Curve_aiepy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oeujf"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 25, 0)
+emission_shape = 1
+emission_sphere_radius = 57.11
+angle_min = -177.5
+angle_max = 157.8
+direction = Vector3(0, -1, 0)
+spread = 19.11
+initial_velocity_min = 109.59
+initial_velocity_max = 280.82
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_p7w8t")
+alpha_curve = SubResource("CurveTexture_64mo5")
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 floor_stop_on_slope = false
 platform_on_leave = 2
 script = ExtResource("1_eybfr")
+damping_value = 20
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.2, 1.2)
@@ -217,12 +251,22 @@ animation = &"Idle"
 autoplay = "Idle"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -6.82267)
-scale = Vector2(0.188978, 0.191688)
+visible = false
+position = Vector2(0.0155768, -14.1232)
+scale = Vector2(0.212692, 0.215742)
 sprite_frames = SubResource("SpriteFrames_vi0lq")
 animation = &"Dark_Idle"
 autoplay = "Dark_Idle"
 frame_progress = 0.795269
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_cddh4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_oeujf")
+texture = ExtResource("23_jjrum")
+lifetime = 0.35
+one_shot = true

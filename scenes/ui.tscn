@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpbt5sgxuqs3r"]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_xcyd4"]
+[ext_resource type="Texture2D" uid="uid://bmhu0kf4hgfwu" path="res://graphics/Items/timer_icon.png" id="2_eipkc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nd5tf"]
+font_size = 48
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_xcyd4")
+
+[node name="TimerDisplay" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.88
+anchor_top = 0.01
+anchor_right = 0.88
+anchor_bottom = 0.01
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TimerDisplay"]
+layout_mode = 0
+offset_left = -34.0
+offset_right = 112.0
+offset_bottom = 107.0
+
+[node name="TextureRect" type="TextureRect" parent="TimerDisplay/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_eipkc")
+expand_mode = 2
+
+[node name="TimerDisplayText" type="Label" parent="TimerDisplay/HBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_nd5tf")

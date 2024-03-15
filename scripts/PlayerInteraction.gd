@@ -5,6 +5,16 @@ signal speed_modified(multiplier: float)
 var ice_multiplier: float = 1.5
 var normal_multiplier: float = 1.0
 
+func _ready():
+	Globals.gameTimer()
+
+func _process(_delta):
+	$UI.update_timer_text()
+	
+	if Globals.timeCounter <= 0:
+		print("Game Over")
+		get_tree().change_scene_to_file("res://scenes/main.tscn")
+
 func _on_player_collided(collision):
 	
 	if collision.get_collider() is TileMap:
@@ -16,8 +26,8 @@ func _on_player_collided(collision):
 		if not (tile_data == null) and tile_pos:
 			var custom_data = tile_data.get_custom_data_by_layer_id(0)
 	
-			if $Player.is_on_floor():
-				if custom_data == 2:
-					speed_modified.emit(ice_multiplier)
-				else:
-					speed_modified.emit(normal_multiplier)
+			if custom_data == 2:
+				speed_modified.emit(ice_multiplier)
+			else:
+				speed_modified.emit(normal_multiplier)
+					

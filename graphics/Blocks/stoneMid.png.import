@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhl7q5fomqo65"
-path="res://.godot/imported/sheet.png-71277edaca669d3d9a32184c148407da.ctex"
+uid="uid://bll54yrkpuowc"
+path="res://.godot/imported/stoneMid.png-0e06dff33848033b7485755b91a3bd43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/sheet.png"
-dest_files=["res://.godot/imported/sheet.png-71277edaca669d3d9a32184c148407da.ctex"]
+source_file="res://graphics/Blocks/stoneMid.png"
+dest_files=["res://.godot/imported/stoneMid.png-0e06dff33848033b7485755b91a3bd43.ctex"]
 
 [params]
 

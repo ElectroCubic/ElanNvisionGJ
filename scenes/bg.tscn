@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp60r6yqa8cvu"]
+
+[ext_resource type="Script" path="res://scripts/bg.gd" id="1_7r6rt"]
+[ext_resource type="Texture2D" uid="uid://cm2aryd3h0rep" path="res://graphics/Background/MainBg.png" id="1_31b5m"]
+[ext_resource type="Texture2D" uid="uid://baaeuwrbhrabc" path="res://graphics/Background/TOP.png" id="3_ulsre"]
+[ext_resource type="Texture2D" uid="uid://cryfxqfskphu8" path="res://graphics/Background/BOTTOM.png" id="4_2303j"]
+
+[node name="BG" type="ParallaxBackground"]
+script = ExtResource("1_7r6rt")
+
+[node name="Back" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="MainBg" type="Sprite2D" parent="Back"]
+modulate = Color(0.91664, 0.91664, 0.91664, 1)
+position = Vector2(960, 540)
+scale = Vector2(3.13725, 2.6799)
+texture = ExtResource("1_31b5m")
+
+[node name="Front" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(2167, 0)
+
+[node name="Top" type="Sprite2D" parent="Front"]
+modulate = Color(0.713726, 0.713726, 0.713726, 1)
+position = Vector2(541.77, 160.286)
+scale = Vector2(0.403102, 0.40501)
+texture = ExtResource("3_ulsre")
+
+[node name="Top2" type="Sprite2D" parent="Front"]
+modulate = Color(0.713726, 0.713726, 0.713726, 1)
+position = Vector2(1625.12, 160.143)
+scale = Vector2(0.403188, 0.404762)
+texture = ExtResource("3_ulsre")
+
+[node name="Bottom" type="Sprite2D" parent="Front"]
+modulate = Color(0.796078, 0.796078, 0.796078, 1)
+position = Vector2(573.808, 997.5)
+scale = Vector2(0.351598, 0.358507)
+texture = ExtResource("4_2303j")
+
+[node name="Bottom2" type="Sprite2D" parent="Front"]
+modulate = Color(0.796078, 0.796078, 0.796078, 1)
+position = Vector2(1721, 998)
+scale = Vector2(0.351598, 0.358507)
+texture = ExtResource("4_2303j")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr6vs1nuck0o5"
-path="res://.godot/imported/snowBallBig.png-76fba02d359862e09b9c43b2bb6e2b53.ctex"
+uid="uid://bvj8bb00u3rrv"
+path="res://.godot/imported/signExit.png-7dfe383a615e1028f4aebdeafacbf733.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/snowBallBig.png"
-dest_files=["res://.godot/imported/snowBallBig.png-76fba02d359862e09b9c43b2bb6e2b53.ctex"]
+source_file="res://graphics/Background/signExit.png"
+dest_files=["res://.godot/imported/signExit.png-7dfe383a615e1028f4aebdeafacbf733.ctex"]
 
 [params]
 
