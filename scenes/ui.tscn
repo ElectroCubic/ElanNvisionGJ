@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpbt5sgxuqs3r"]
+[gd_scene load_steps=9 format=3 uid="uid://dpbt5sgxuqs3r"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_xcyd4"]
 [ext_resource type="Texture2D" uid="uid://bmhu0kf4hgfwu" path="res://graphics/Items/timer_icon.png" id="2_eipkc"]
+[ext_resource type="Texture2D" uid="uid://cjdsgat58sl11" path="res://graphics/UI/red_button12.png" id="4_3xwou"]
+[ext_resource type="Texture2D" uid="uid://bd1as2k048bua" path="res://graphics/UI/red_button01.png" id="4_fmscp"]
+[ext_resource type="Texture2D" uid="uid://ctkwn32s4nenq" path="res://graphics/UI/red_button11.png" id="5_xbrg0"]
+[ext_resource type="FontFile" uid="uid://b8l4vaftb840e" path="res://graphics/UI/Kenney Pixel.ttf" id="6_6617n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nd5tf"]
 font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_8wmok"]
+font = ExtResource("6_6617n")
+font_size = 72
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_xcyd4")
@@ -33,3 +43,82 @@ expand_mode = 2
 [node name="TimerDisplayText" type="Label" parent="TimerDisplay/HBoxContainer"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_nd5tf")
+
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -231.0
+offset_right = 374.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen/MarginContainer"]
+layout_mode = 2
+color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[node name="RetryBtn" type="TextureButton" parent="GameOverScreen/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -179.0
+offset_right = 127.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_fmscp")
+texture_pressed = ExtResource("4_3xwou")
+texture_hover = ExtResource("5_xbrg0")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="GameOverScreen/MarginContainer/ColorRect/RetryBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RETRY"
+label_settings = SubResource("LabelSettings_8wmok")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverText" type="RichTextLabel" parent="GameOverScreen/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -198.0
+offset_top = 100.0
+offset_right = 197.0
+offset_bottom = 210.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("6_6617n")
+theme_override_font_sizes/normal_font_size = 140
+text = "YOU DIED!"
+
+[connection signal="pressed" from="GameOverScreen/MarginContainer/ColorRect/RetryBtn" to="." method="_on_retry_btn_pressed"]

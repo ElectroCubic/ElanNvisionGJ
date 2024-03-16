@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://k2xnm427c1rk"]
+
+[ext_resource type="Texture2D" uid="uid://c8dr2o1gfor81" path="res://graphics/Background/torchOff.png" id="1_jvbap"]
+[ext_resource type="Script" path="res://scripts/torch.gd" id="1_nx3cc"]
+[ext_resource type="Texture2D" uid="uid://i4f82axco5wo" path="res://graphics/Background/torch1.png" id="2_vqex0"]
+[ext_resource type="Texture2D" uid="uid://bc4rudaf7pvgj" path="res://graphics/Background/torch2.png" id="3_s07oj"]
+[ext_resource type="Texture2D" uid="uid://cyla8lbrp66wk" path="res://graphics/Background/circle.png" id="5_k5hu2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cmc3i"]
+radius = 141.128
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g456w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jvbap")
+}],
+"loop": false,
+"name": &"TorchOff",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vqex0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s07oj")
+}],
+"loop": true,
+"name": &"TorchOn",
+"speed": 8.0
+}]
+
+[node name="Torch" type="Area2D"]
+script = ExtResource("1_nx3cc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cmc3i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g456w")
+animation = &"TorchOff"
+autoplay = "TorchOff"
+frame_progress = 1.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -1.00001)
+scale = Vector2(0.66857, 0.717548)
+color = Color(1, 1, 0.580392, 1)
+energy = 0.77
+shadow_enabled = true
+texture = ExtResource("5_k5hu2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

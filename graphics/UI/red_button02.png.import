@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cta2iw6n26nie"
-path="res://.godot/imported/stoneCliffAlt_left.png-be1fcb1dac6be1cae1b4e7b5081081b9.ctex"
+uid="uid://cutsgo166llui"
+path="res://.godot/imported/red_button02.png-0367a94e44c932fbf1e14e22cdd1c5d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/Blocks/stoneCliffAlt_left.png"
-dest_files=["res://.godot/imported/stoneCliffAlt_left.png-be1fcb1dac6be1cae1b4e7b5081081b9.ctex"]
+source_file="res://graphics/UI/red_button02.png"
+dest_files=["res://.godot/imported/red_button02.png-0367a94e44c932fbf1e14e22cdd1c5d3.ctex"]
 
 [params]
 

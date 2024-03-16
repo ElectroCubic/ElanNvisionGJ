@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://gh748f5eykud"]
+[gd_scene load_steps=36 format=3 uid="uid://gh748f5eykud"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_eybfr"]
 [ext_resource type="Texture2D" uid="uid://btg3j016tgxbu" path="res://graphics/Player/Normal Player Blink 4.png" id="2_4aw5w"]
@@ -23,6 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://ba7mtlr0kaij7" path="res://graphics/Darkside/Darkside Idle 7.png" id="21_j08dt"]
 [ext_resource type="Texture2D" uid="uid://c1i2mkip2iwir" path="res://graphics/Darkside/Darkside Idle 5.png" id="22_wwvbw"]
 [ext_resource type="Texture2D" uid="uid://f06dk17a1l4k" path="res://graphics/Items/Fire_particle.png" id="23_jjrum"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gsu42"]
+polygon = PackedVector2Array(-40, 0, -39, 48, 39, 48, 39, -14, 37, -27, 32, -34, 22, -44, 11, -48, 0, -49, -20, -46, -33, -35, -38, -26, -40, -16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1gova"]
 animations = [{
@@ -233,12 +236,37 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_p7w8t")
 alpha_curve = SubResource("CurveTexture_64mo5")
 
+[sub_resource type="Curve" id="Curve_3nawj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.503571, 1), 0.0, 0.0, 0, 0, Vector2(0.860714, 0.658892), -2.31073, -2.31073, 0, 0, Vector2(1, 0), -3.5065, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3lw0w"]
+curve = SubResource("Curve_3nawj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5q1tk"]
+lifetime_randomness = 0.05
+particle_flag_disable_z = true
+velocity_pivot = Vector3(0, 0, 1)
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 403.38
+initial_velocity_max = 603.9
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 25.4
+linear_accel_max = 40.26
+scale_min = 10.0
+scale_max = 20.0
+color = Color(1, 0, 0, 1)
+alpha_curve = SubResource("CurveTexture_3lw0w")
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 floor_stop_on_slope = false
 platform_on_leave = 2
 script = ExtResource("1_eybfr")
 damping_value = 20
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_gsu42")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.2, 1.2)
@@ -260,13 +288,20 @@ autoplay = "Dark_Idle"
 frame_progress = 0.795269
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_cddh4")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="ChangeParticles" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_oeujf")
 texture = ExtResource("23_jjrum")
 lifetime = 0.35
 one_shot = true
+
+[node name="DeathParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_5q1tk")
+lifetime = 0.4
+one_shot = true
+visibility_rect = Rect2(-200, -200, 400, 400)

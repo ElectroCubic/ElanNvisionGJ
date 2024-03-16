@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0cbt3dyxv5mp"
-path="res://.godot/imported/stoneHill_left.png-3fd2fe7399ee14c7b7b335e81735822a.ctex"
+uid="uid://bbpdb2hro2qps"
+path="res://.godot/imported/stone_sheet.png-068e8101040992493552d159d22d25e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/Blocks/stoneHill_left.png"
-dest_files=["res://.godot/imported/stoneHill_left.png-3fd2fe7399ee14c7b7b335e81735822a.ctex"]
+source_file="res://graphics/Blocks/stone_sheet.png"
+dest_files=["res://.godot/imported/stone_sheet.png-068e8101040992493552d159d22d25e9.ctex"]
 
 [params]
 

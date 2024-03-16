@@ -9,7 +9,7 @@ func _process(_delta):
 
 func _on_body_entered(body):
 	if body.name == "Player":
-		body.hit()
+		body.death()
 
 func _on_self_destruct_timer_timeout():
 	queue_free()

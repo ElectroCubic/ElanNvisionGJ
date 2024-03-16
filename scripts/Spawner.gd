@@ -1,6 +1,6 @@
 extends Node2D
 
-var snowBall = preload("res://scenes/snow_ball.tscn")
+var snowBall = preload("res://scenes/Objects/snow_ball.tscn")
 
 func _on_snow_ball_spawner_timeout():
 	for temp in get_children():

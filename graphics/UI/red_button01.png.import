@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnidg2v2g1u0c"
-path="res://.godot/imported/stoneHill_right.png-b95598964e12272b67f66ccbe63eca5b.ctex"
+uid="uid://bd1as2k048bua"
+path="res://.godot/imported/red_button01.png-3c64da10841bf2bd0683adb5ec92b201.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/Blocks/stoneHill_right.png"
-dest_files=["res://.godot/imported/stoneHill_right.png-b95598964e12272b67f66ccbe63eca5b.ctex"]
+source_file="res://graphics/UI/red_button01.png"
+dest_files=["res://.godot/imported/red_button01.png-3c64da10841bf2bd0683adb5ec92b201.ctex"]
 
 [params]
 

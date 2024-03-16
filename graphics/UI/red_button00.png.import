@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjp672b7rvp5r"
-path="res://.godot/imported/stoneCenter_rounded.png-6477225ded8da20d870b010c0c77957e.ctex"
+uid="uid://hb0sj8y5mkvu"
+path="res://.godot/imported/red_button00.png-3490ec44d8d3e1e42f8bf9c89dc7a926.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/Blocks/stoneCenter_rounded.png"
-dest_files=["res://.godot/imported/stoneCenter_rounded.png-6477225ded8da20d870b010c0c77957e.ctex"]
+source_file="res://graphics/UI/red_button00.png"
+dest_files=["res://.godot/imported/red_button00.png-3490ec44d8d3e1e42f8bf9c89dc7a926.ctex"]
 
 [params]
 

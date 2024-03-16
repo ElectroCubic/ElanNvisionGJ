@@ -112,7 +112,7 @@ func _physics_process(delta):
 			velocity.y += JUMP_VELOCITY * (lowJumpMultiplier - 1)
 			
 		if Input.is_action_just_pressed("SwitchPlayer"):
-			$GPUParticles2D.emitting = true
+			$ChangeParticles.emitting = true
 			if Globals.is_dark_mode:
 				DisableDarkMode()
 			else:
@@ -131,6 +131,19 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		collided.emit(collision)
 
-func hit():
-	print("ded")
-
+func death():
+	Globals.is_game_over = true
+	
+	if Globals.is_dark_mode:
+		animDark.play("Dark_Death")
+		await get_tree().create_timer(0.5).timeout
+		animDark.hide()
+	else:
+		anim.play("Death")
+		await get_tree().create_timer(0.5).timeout
+		anim.hide()
+	
+	velocity = Vector2.ZERO
+	$DeathParticles.emitting = true
+	await get_tree().create_timer(1).timeout
+	$"../UI/GameOverScreen".visible = true

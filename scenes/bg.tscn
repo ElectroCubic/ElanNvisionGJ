@@ -23,25 +23,25 @@ motion_scale = Vector2(0.7, 0.7)
 motion_mirroring = Vector2(2167, 0)
 
 [node name="Top" type="Sprite2D" parent="Front"]
-modulate = Color(0.713726, 0.713726, 0.713726, 1)
+modulate = Color(0.443137, 0.435294, 0.635294, 1)
 position = Vector2(541.77, 160.286)
 scale = Vector2(0.403102, 0.40501)
 texture = ExtResource("3_ulsre")
 
 [node name="Top2" type="Sprite2D" parent="Front"]
-modulate = Color(0.713726, 0.713726, 0.713726, 1)
+modulate = Color(0.443137, 0.435294, 0.635294, 1)
 position = Vector2(1625.12, 160.143)
 scale = Vector2(0.403188, 0.404762)
 texture = ExtResource("3_ulsre")
 
 [node name="Bottom" type="Sprite2D" parent="Front"]
-modulate = Color(0.796078, 0.796078, 0.796078, 1)
-position = Vector2(573.808, 997.5)
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+position = Vector2(573.808, 1005.5)
 scale = Vector2(0.351598, 0.358507)
 texture = ExtResource("4_2303j")
 
 [node name="Bottom2" type="Sprite2D" parent="Front"]
-modulate = Color(0.796078, 0.796078, 0.796078, 1)
-position = Vector2(1721, 998)
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+position = Vector2(1721, 1006)
 scale = Vector2(0.351598, 0.358507)
 texture = ExtResource("4_2303j")

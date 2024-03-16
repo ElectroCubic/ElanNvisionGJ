@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn706yi4jsqap"
-path="res://.godot/imported/stoneHalf_mid.png-215386f00c08e33f3e55311c0d32a263.ctex"
+uid="uid://b8pff6bfkvd7y"
+path="res://.godot/imported/WinterBg.png-3d74269a963092aa15fbc9df826f2a19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/Blocks/stoneHalf_mid.png"
-dest_files=["res://.godot/imported/stoneHalf_mid.png-215386f00c08e33f3e55311c0d32a263.ctex"]
+source_file="res://graphics/Background/WinterBg.png"
+dest_files=["res://.godot/imported/WinterBg.png-3d74269a963092aa15fbc9df826f2a19.ctex"]
 
 [params]
 
