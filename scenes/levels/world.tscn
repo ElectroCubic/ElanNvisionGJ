@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dikv7eclado4c"]
+[gd_scene load_steps=13 format=3 uid="uid://dikv7eclado4c"]
 
 [ext_resource type="Texture2D" uid="uid://cl41jo284rcqn" path="res://graphics/Blocks/sheet.png" id="1_wofk0"]
 [ext_resource type="Script" path="res://scripts/PlayerInteraction.gd" id="2_fi46h"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bydrain2k0abh" path="res://graphics/Blocks/tundra_sheet.png" id="4_kradh"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="4_svljc"]
 [ext_resource type="PackedScene" uid="uid://dpbt5sgxuqs3r" path="res://scenes/ui.tscn" id="5_ajb7i"]
+[ext_resource type="PackedScene" uid="uid://5rjdhcqoa8y6" path="res://scenes/Objects/snow_fall.tscn" id="8_rtw5o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu52m"]
 texture = ExtResource("1_wofk0")
@@ -795,6 +796,8 @@ script = ExtResource("2_fi46h")
 
 [node name="Background" type="Node2D" parent="."]
 
+[node name="Exit" type="Node2D" parent="."]
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(0, -1)
 tile_set = SubResource("TileSet_ldwv8")
@@ -804,10 +807,9 @@ layer_0/tile_data = PackedInt32Array(131069, 131072, 0, 131070, 196608, 0, 13107
 layer_1/name = "Deco"
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array()
+metadata/_edit_lock_ = true
 
 [node name="Lights" type="Node2D" parent="."]
-
-[node name="Exit" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_h55p3")]
 position = Vector2(37, 21)
@@ -824,7 +826,16 @@ position = Vector2(807, -509)
 
 [node name="UI" parent="." instance=ExtResource("5_ajb7i")]
 
+[node name="Snow Particles" type="Node2D" parent="."]
+
+[node name="SnowFall" parent="Snow Particles" instance=ExtResource("8_rtw5o")]
+position = Vector2(507, -1005)
+
+[node name="SnowFall2" parent="Snow Particles" instance=ExtResource("8_rtw5o")]
+position = Vector2(1496, -991)
+
 [connection signal="speed_modified" from="." to="Player" method="_on_world_speed_modified"]
 [connection signal="collided" from="Player" to="." method="_on_player_collided"]
 [connection signal="timeout" from="Spawners/SnowBallSpawner" to="Spawners" method="_on_snow_ball_spawner_timeout"]
+[connection signal="restart" from="UI" to="." method="_on_ui_restart"]
 [connection signal="retry" from="UI" to="." method="_on_ui_retry"]

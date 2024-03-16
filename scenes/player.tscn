@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://gh748f5eykud"]
+[gd_scene load_steps=41 format=3 uid="uid://gh748f5eykud"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_eybfr"]
 [ext_resource type="Texture2D" uid="uid://btg3j016tgxbu" path="res://graphics/Player/Normal Player Blink 4.png" id="2_4aw5w"]
+[ext_resource type="Texture2D" uid="uid://bj81817ioljho" path="res://graphics/Player/Normal Player Angry.png" id="2_l101w"]
 [ext_resource type="Texture2D" uid="uid://cxfca0n3sdjfc" path="res://graphics/Player/Normal Player Idle 5.png" id="3_uvacl"]
 [ext_resource type="Texture2D" uid="uid://kvf3otf5rg1u" path="res://graphics/Player/Normal Player Idle.png" id="4_d12od"]
 [ext_resource type="Texture2D" uid="uid://f1t54it3u1nv" path="res://graphics/Player/Normal Player Blink 1.png" id="5_ts24k"]
@@ -13,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bltmmquc832xl" path="res://graphics/Player/Normal Player Idle 3.png" id="11_brls6"]
 [ext_resource type="Texture2D" uid="uid://r5eboka3dynk" path="res://graphics/Darkside/Darkside Blink 3.png" id="12_uym3o"]
 [ext_resource type="Texture2D" uid="uid://cg1dboxbq7sgt" path="res://graphics/Darkside/Darkside Idle 6.png" id="13_8ik8b"]
+[ext_resource type="Texture2D" uid="uid://vpq6wce6rfh2" path="res://graphics/Player/Normal Player Scared.png" id="13_u3cku"]
 [ext_resource type="Texture2D" uid="uid://ce205kb1brfeg" path="res://graphics/Darkside/Darkside Idle 1.png" id="14_kxvhy"]
 [ext_resource type="Texture2D" uid="uid://dlwo80538phdx" path="res://graphics/Darkside/Darkside Blink 1.png" id="15_indp2"]
 [ext_resource type="Texture2D" uid="uid://njqlhkosw2i2" path="res://graphics/Darkside/Darkside Blink 2.png" id="16_hv1t3"]
@@ -29,6 +31,14 @@ polygon = PackedVector2Array(-40, 0, -39, 48, 39, 48, 39, -14, 37, -27, 32, -34,
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1gova"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l101w")
+}],
+"loop": false,
+"name": &"Angry",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_4aw5w")
@@ -109,6 +119,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"Move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_u3cku")
+}],
+"loop": false,
+"name": &"Scared",
 "speed": 5.0
 }]
 
@@ -258,6 +276,32 @@ scale_max = 20.0
 color = Color(1, 0, 0, 1)
 alpha_curve = SubResource("CurveTexture_3lw0w")
 
+[sub_resource type="Curve" id="Curve_mmp7j"]
+_data = [Vector2(0.0123457, 1), 0.0, 0.0, 0, 0, Vector2(0.765432, 0.960269), -0.0695834, -0.0695834, 0, 0, Vector2(1, 0), -9.96821, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ecx10"]
+curve = SubResource("Curve_mmp7j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_exx0t"]
+lifetime_randomness = 0.05
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 50, 0)
+emission_shape_scale = Vector3(20, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -98.2
+angle_max = 81.8
+direction = Vector3(0, -1, 0)
+spread = 25.568
+initial_velocity_min = 73.86
+initial_velocity_max = 96.59
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 5.0
+color = Color(0.686275, 0.686275, 0.686275, 1)
+alpha_curve = SubResource("CurveTexture_ecx10")
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 floor_stop_on_slope = false
@@ -305,3 +349,9 @@ process_material = SubResource("ParticleProcessMaterial_5q1tk")
 lifetime = 0.4
 one_shot = true
 visibility_rect = Rect2(-200, -200, 400, 400)
+
+[node name="WalkParticles" type="GPUParticles2D" parent="."]
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_exx0t")
+lifetime = 0.5
+randomness = 0.05

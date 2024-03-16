@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name World
+
 signal speed_modified(multiplier: float)
 
 var ice_multiplier: float = 1.5
@@ -8,16 +10,25 @@ var normal_multiplier: float = 1.0
 @onready var player: CharacterBody2D = $Player
 
 func _ready():
-	Globals.timeCounter = 600
+	$UI/Failed.visible = false
+	if Globals.is_tutorial or Globals.is_cutscene:
+		$UI/TimerDisplay.visible = false
+	else:
+		$UI/TimerDisplay.visible = true
+		
+		if Globals.time_running:
+			Globals.gameTimer()
+		
 	Globals.is_game_over = false
-	Globals.gameTimer()
+	
 	
 func _process(_delta):
 	$UI.update_timer_text()
 	
 	if Globals.timeCounter <= 0:
-		print("Game Over")
-		get_tree().change_scene_to_file("res://scenes/main.tscn")
+		Globals.time_running = false
+		$UI/Failed.visible = true
+		Globals.timeCounter = 10
 
 func _on_player_collided(collision):
 	
@@ -51,6 +62,10 @@ func _on_player_collided(collision):
 			if custom_above_data == 3:
 				player.death()
 
-
 func _on_ui_retry():
 	get_tree().reload_current_scene()
+
+
+func _on_ui_restart():
+	Globals.time_running = true
+	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")

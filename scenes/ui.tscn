@@ -121,4 +121,82 @@ theme_override_fonts/normal_font = ExtResource("6_6617n")
 theme_override_font_sizes/normal_font_size = 140
 text = "YOU DIED!"
 
+[node name="Failed" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Failed"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -231.0
+offset_right = 374.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Failed/MarginContainer"]
+layout_mode = 2
+color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[node name="Restart" type="TextureButton" parent="Failed/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -179.0
+offset_right = 127.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_fmscp")
+texture_pressed = ExtResource("4_3xwou")
+texture_hover = ExtResource("5_xbrg0")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Failed/MarginContainer/ColorRect/Restart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESTART"
+label_settings = SubResource("LabelSettings_8wmok")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartText" type="RichTextLabel" parent="Failed/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -258.0
+offset_top = 101.0
+offset_right = 250.0
+offset_bottom = 211.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("6_6617n")
+theme_override_font_sizes/normal_font_size = 140
+text = "YOU FAILED!"
+
 [connection signal="pressed" from="GameOverScreen/MarginContainer/ColorRect/RetryBtn" to="." method="_on_retry_btn_pressed"]
+[connection signal="pressed" from="Failed/MarginContainer/ColorRect/Restart" to="." method="_on_restart_pressed"]

@@ -17,6 +17,35 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim = $AnimatedSprite2D
 @onready var animDark = $AnimatedSprite2D2
 
+func makeScared():
+	anim.play("Scared")
+	
+func makeAngry():
+	anim.play("Angry")
+
+func charFlip():
+	anim.flip_h = not anim.flip_h
+
+func charMoveLeft():
+	if Globals.is_dark_mode:
+		animDark.flip_h = true
+		if velocity.y == 0:
+			animDark.play("Dark_Move")
+	else:
+		anim.flip_h = true
+		if velocity.y == 0:
+			anim.play("Move")
+			
+func charMoveRight():
+	if Globals.is_dark_mode:
+		animDark.flip_h = false
+		if velocity.y == 0:
+			animDark.play("Dark_Move")
+	else:
+		anim.flip_h = false
+		if velocity.y == 0:
+			anim.play("Move")
+
 func _ready():
 	DisableDarkMode()
 	if Globals.is_dark_mode:
@@ -37,6 +66,12 @@ func DisableDarkMode():
 func _on_world_speed_modified(multiplier):
 	move_speed_multiplier = multiplier
 
+func emitWalkParticles():
+	$WalkParticles.emitting = true
+	
+func stopWalkParticles():
+	$WalkParticles.emitting = false
+
 func _physics_process(delta):
 
 	# Add the gravity.
@@ -47,32 +82,23 @@ func _physics_process(delta):
 		coyoteTimeCounter -= delta
 
 	# Player Controls
-	if (anim.animation != "Death" and animDark.animation != "Dark_Death"):
+	if (anim.animation != "Death" and animDark.animation != "Dark_Death") and not Globals.is_cutscene:
 		var direction = 0
 		var left = Input.is_action_pressed("Left")
 		var right = Input.is_action_pressed("Right")
+		
+		if velocity and is_on_floor():
+			emitWalkParticles()
+		else:
+			stopWalkParticles()
 			
 		if left and not right:
 			direction = -1
-			if Globals.is_dark_mode:
-				animDark.flip_h = true
-				if velocity.y == 0:
-					animDark.play("Dark_Move")
-			else:
-				anim.flip_h = true
-				if velocity.y == 0:
-					anim.play("Move")
+			charMoveLeft()
 				
 		elif right and not left:
 			direction = 1
-			if Globals.is_dark_mode:
-				animDark.flip_h = false
-				if velocity.y == 0:
-					animDark.play("Dark_Move")
-			else:
-				anim.flip_h = false
-				if velocity.y == 0:
-					anim.play("Move")
+			charMoveRight()
 		else:
 			if move_speed_multiplier > 1:
 				velocity.x = move_toward(velocity.x,0,1)
@@ -111,7 +137,7 @@ func _physics_process(delta):
 		elif velocity.y < 0 and not Input.is_action_pressed("Jump"):
 			velocity.y += JUMP_VELOCITY * (lowJumpMultiplier - 1)
 			
-		if Input.is_action_just_pressed("SwitchPlayer"):
+		if Input.is_action_just_pressed("SwitchPlayer") and not Globals.is_tutorial:
 			$ChangeParticles.emitting = true
 			if Globals.is_dark_mode:
 				DisableDarkMode()
@@ -133,6 +159,7 @@ func _physics_process(delta):
 
 func death():
 	Globals.is_game_over = true
+	Globals.time_running = false
 	
 	if Globals.is_dark_mode:
 		animDark.play("Dark_Death")
