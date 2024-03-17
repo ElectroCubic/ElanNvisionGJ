@@ -21,3 +21,6 @@ func _on_retry_btn_pressed():
 
 func _on_restart_pressed():
 	restart.emit()
+
+func _on_quit_pressed():
+	get_tree().quit()

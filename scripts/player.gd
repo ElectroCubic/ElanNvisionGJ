@@ -17,11 +17,20 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim = $AnimatedSprite2D
 @onready var animDark = $AnimatedSprite2D2
 
+func playJumpSound():
+	$JumpSound.play()
+
+func playTransformSound():
+	$TransformSound.play()
+
 func makeScared():
 	anim.play("Scared")
 	
 func makeAngry():
 	anim.play("Angry")
+	
+func makeNormal():
+	anim.play("Idle")
 
 func charFlip():
 	anim.flip_h = not anim.flip_h
@@ -82,15 +91,20 @@ func _physics_process(delta):
 		coyoteTimeCounter -= delta
 
 	# Player Controls
-	if (anim.animation != "Death" and animDark.animation != "Dark_Death") and not Globals.is_cutscene:
+	if (anim.animation != "Death" and animDark.animation != "Dark_Death") and not Globals.is_cutscene and not Globals.is_game_over:
 		var direction = 0
 		var left = Input.is_action_pressed("Left")
 		var right = Input.is_action_pressed("Right")
 		
-		if velocity and is_on_floor():
+		if velocity and is_on_floor() and not move_speed_multiplier > 1:
+			if $WalkTimer.time_left <= 0:
+				$WalkSound.pitch_scale = randf_range(0.8,1.2)
+				$WalkSound.play()
+				$WalkTimer.start(0.2)
 			emitWalkParticles()
 		else:
 			stopWalkParticles()
+
 			
 		if left and not right:
 			direction = -1
@@ -101,6 +115,9 @@ func _physics_process(delta):
 			charMoveRight()
 		else:
 			if move_speed_multiplier > 1:
+				if $SlideTimer.time_left <= 0 and not velocity.x == 0:
+					$SlideSound.play()
+					$SlideTimer.start(0.5)
 				velocity.x = move_toward(velocity.x,0,1)
 				if not is_on_floor():
 					velocity.x = move_toward(velocity.x,SPEED,0)
@@ -125,6 +142,7 @@ func _physics_process(delta):
 			jumpBufferCounter -= delta
 		
 		if Input.is_action_pressed("Jump") and coyoteTimeCounter > 0 and jumpBufferCounter > 0:
+			playJumpSound()
 			coyoteTimeCounter = 0
 			jumpBufferCounter = 0
 			if Globals.is_dark_mode:
@@ -138,6 +156,7 @@ func _physics_process(delta):
 			velocity.y += JUMP_VELOCITY * (lowJumpMultiplier - 1)
 			
 		if Input.is_action_just_pressed("SwitchPlayer") and Globals.time_running:
+			playTransformSound()
 			$ChangeParticles.emitting = true
 			if Globals.is_dark_mode:
 				DisableDarkMode()
@@ -158,6 +177,8 @@ func _physics_process(delta):
 		collided.emit(collision)
 
 func death():
+	if not $DeathSound.playing and not Globals.is_game_over:
+		$DeathSound.play()
 	Globals.is_game_over = true
 	Globals.time_running = false
 	

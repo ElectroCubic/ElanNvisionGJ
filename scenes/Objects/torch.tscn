@@ -47,7 +47,7 @@ frame_progress = 1.0
 position = Vector2(0, -1.00001)
 scale = Vector2(0.66857, 0.717548)
 color = Color(1, 1, 0.580392, 1)
-energy = 0.77
+energy = 0.0
 shadow_enabled = true
 texture = ExtResource("5_k5hu2")
 

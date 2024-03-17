@@ -23,8 +23,6 @@ func gameTimer():
 		checkMode()
 		timeCounter -= decreasingFactor
 		
-		print(timeCounter, time_running, is_game_over)
-		
 		if timeCounter <= 0:
 			timeOut.emit()
 			return

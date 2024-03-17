@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://gh748f5eykud"]
+[gd_scene load_steps=46 format=3 uid="uid://gh748f5eykud"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_eybfr"]
 [ext_resource type="Texture2D" uid="uid://btg3j016tgxbu" path="res://graphics/Player/Normal Player Blink 4.png" id="2_4aw5w"]
@@ -25,6 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://ba7mtlr0kaij7" path="res://graphics/Darkside/Darkside Idle 7.png" id="21_j08dt"]
 [ext_resource type="Texture2D" uid="uid://c1i2mkip2iwir" path="res://graphics/Darkside/Darkside Idle 5.png" id="22_wwvbw"]
 [ext_resource type="Texture2D" uid="uid://f06dk17a1l4k" path="res://graphics/Items/Fire_particle.png" id="23_jjrum"]
+[ext_resource type="AudioStream" uid="uid://dqtticxe6jyq3" path="res://audio/Retro Footstep.wav" id="26_15gpu"]
+[ext_resource type="AudioStream" uid="uid://bfscd8e4qbmud" path="res://audio/JumpSound.wav" id="27_ufxok"]
+[ext_resource type="AudioStream" uid="uid://imuhbxhp4idp" path="res://audio/FlameBurst.wav" id="28_3lbjh"]
+[ext_resource type="AudioStream" uid="uid://tv54px6btja5" path="res://audio/IceSlide.wav" id="29_ucean"]
+[ext_resource type="AudioStream" uid="uid://dtgamcjhqs874" path="res://audio/DeathSound.wav" id="30_7v4te"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gsu42"]
 polygon = PackedVector2Array(-40, 0, -39, 48, 39, 48, 39, -14, 37, -27, 32, -34, 22, -44, 11, -48, 0, -49, -20, -46, -33, -35, -38, -26, -40, -16)
@@ -355,3 +360,29 @@ amount = 20
 process_material = SubResource("ParticleProcessMaterial_exx0t")
 lifetime = 0.5
 randomness = 0.05
+
+[node name="WalkSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("26_15gpu")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("27_ufxok")
+volume_db = 4.0
+
+[node name="TransformSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("28_3lbjh")
+volume_db = 2.0
+
+[node name="SlideSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("29_ucean")
+volume_db = 6.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("30_7v4te")
+volume_db = 20.0
+pitch_scale = 1.2
+
+[node name="WalkTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SlideTimer" type="Timer" parent="."]
+one_shot = true

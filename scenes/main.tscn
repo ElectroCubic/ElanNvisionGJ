@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwuqfjwfnpc3y"]
+[gd_scene load_steps=10 format=3 uid="uid://cwuqfjwfnpc3y"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_1u0gr"]
 [ext_resource type="Texture2D" uid="uid://cajge6ktekajk" path="res://graphics/UI/green_button02.png" id="2_gp0ap"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ctvoox2cp5fav" path="res://graphics/UI/green_button01.png" id="3_rs308"]
 [ext_resource type="Texture2D" uid="uid://dmh3ri6241ujs" path="res://graphics/UI/green_button00.png" id="4_eeh6m"]
 [ext_resource type="FontFile" uid="uid://b8l4vaftb840e" path="res://graphics/UI/Kenney Pixel.ttf" id="5_e6bak"]
+[ext_resource type="AudioStream" uid="uid://dln5abwy4ewga" path="res://audio/rollover1.ogg" id="8_1q0gr"]
+[ext_resource type="AudioStream" uid="uid://b7cljvrchawnk" path="res://audio/Main_Menu_Theme.wav" id="8_swlxf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_346ue"]
 font = ExtResource("5_e6bak")
@@ -78,5 +80,15 @@ text = "THE CURSED FROSTBITE"
 
 [node name="Audio Manager" type="Node2D" parent="."]
 
+[node name="Main Menu" type="AudioStreamPlayer2D" parent="Audio Manager"]
+stream = ExtResource("8_swlxf")
+volume_db = 4.0
+autoplay = true
+
+[node name="SceneChange" type="AudioStreamPlayer2D" parent="Audio Manager"]
+stream = ExtResource("8_1q0gr")
+volume_db = 24.0
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="finished" from="Audio Manager/Main Menu" to="." method="_on_main_menu_finished"]

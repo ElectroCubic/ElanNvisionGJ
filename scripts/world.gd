@@ -6,10 +6,13 @@ signal speed_modified(multiplier: float)
 
 var ice_multiplier: float = 1.5
 var normal_multiplier: float = 1.0
+var clickSound: AudioStreamPlayer
 
 @onready var player: CharacterBody2D = $Player
 
 func _ready():
+	clickSound = $Audio/ClickSound
+	
 	Globals.connect("timeOut", restart)
 	$UI/Failed.visible = false
 	
@@ -22,8 +25,13 @@ func _ready():
 
 func _process(_delta):
 	if Globals.timeCounter <= 0:
+		player.velocity = Vector2.ZERO
+		if not $Audio/DeathSound.playing and not Globals.is_game_over:
+			$Audio/DeathSound.play()
 		Globals.time_running = false
 		Globals.is_game_over = true
+
+		
 
 func _on_player_collided(collision):
 	
@@ -57,7 +65,14 @@ func _on_player_collided(collision):
 			if custom_above_data == 3:
 				player.death()
 
+func playClickSound():
+	if (not clickSound.playing):
+		clickSound.play()
+		await get_tree().create_timer(1).timeout
+		clickSound.stop()
+
 func _on_ui_retry():
+	playClickSound()
 	Globals.lvlSwitch = false
 	$UI/GameOverScreen.visible = false
 	if not Globals.is_tutorial:
@@ -66,6 +81,7 @@ func _on_ui_retry():
 	get_tree().reload_current_scene()
 
 func _on_ui_restart():
+	playClickSound()
 	Globals.lvlSwitch = false
 	$UI/Failed.visible = false
 	Globals.is_game_over = false
