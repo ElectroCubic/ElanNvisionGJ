@@ -53,16 +53,16 @@ layer_0/tile_data = PackedInt32Array(-131075, 524288, 3, -196611, 524288, 3, -26
 position = Vector2(1338, -2298)
 
 [node name="SpawnPos" parent="Spawners" index="1"]
-position = Vector2(3136, -4219)
+position = Vector2(3136, -3793)
 
 [node name="SpawnPos2" type="Marker2D" parent="Spawners" index="2" groups=["Spawner"]]
-position = Vector2(2582, -4219)
+position = Vector2(2582, -3793)
 
 [node name="SpawnPos3" type="Marker2D" parent="Spawners" index="3" groups=["Spawner"]]
-position = Vector2(2039, -4219)
+position = Vector2(2039, -3793)
 
 [node name="SpawnPos4" type="Marker2D" parent="Spawners" index="4" groups=["Spawner"]]
-position = Vector2(1822, -4219)
+position = Vector2(1822, -3793)
 
 [node name="SnowFall" parent="Snow Particles" index="0"]
 position = Vector2(42, -1608)

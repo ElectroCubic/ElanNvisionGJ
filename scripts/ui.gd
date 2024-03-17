@@ -5,6 +5,10 @@ signal restart
 
 @onready var timer_text: Label = $TimerDisplay/HBoxContainer/TimerDisplayText
 
+func _ready():
+	Globals.connect("timeTick", update_timer_text)
+	update_timer_text()
+
 func update_timer_text():
 	var secs = fmod(Globals.timeCounter, 60)
 	var mins = fmod(Globals.timeCounter, 60 * 60) / 60

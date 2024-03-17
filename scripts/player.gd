@@ -137,7 +137,7 @@ func _physics_process(delta):
 		elif velocity.y < 0 and not Input.is_action_pressed("Jump"):
 			velocity.y += JUMP_VELOCITY * (lowJumpMultiplier - 1)
 			
-		if Input.is_action_just_pressed("SwitchPlayer") and not Globals.is_tutorial:
+		if Input.is_action_just_pressed("SwitchPlayer") and Globals.time_running:
 			$ChangeParticles.emitting = true
 			if Globals.is_dark_mode:
 				DisableDarkMode()

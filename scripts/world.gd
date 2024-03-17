@@ -10,25 +10,19 @@ var normal_multiplier: float = 1.0
 @onready var player: CharacterBody2D = $Player
 
 func _ready():
+	Globals.connect("timeOut", restart)
 	$UI/Failed.visible = false
-	if Globals.is_tutorial or Globals.is_cutscene:
-		$UI/TimerDisplay.visible = false
-	else:
+	
+	if Globals.time_running:
 		$UI/TimerDisplay.visible = true
-		
-		if Globals.time_running:
-			Globals.gameTimer()
-		
-	Globals.is_game_over = false
-	
-	
+		Globals.gameTimer()
+	else:
+		$UI/TimerDisplay.visible = false
+
 func _process(_delta):
-	$UI.update_timer_text()
-	
 	if Globals.timeCounter <= 0:
 		Globals.time_running = false
-		$UI/Failed.visible = true
-		Globals.timeCounter = 10
+		Globals.is_game_over = true
 
 func _on_player_collided(collision):
 	
@@ -63,9 +57,18 @@ func _on_player_collided(collision):
 				player.death()
 
 func _on_ui_retry():
+	$UI/GameOverScreen.visible = false
+	if not Globals.is_tutorial:
+		Globals.time_running = true	
+	Globals.is_game_over = false
 	get_tree().reload_current_scene()
 
-
 func _on_ui_restart():
+	$UI/Failed.visible = false
+	Globals.is_game_over = false
 	Globals.time_running = true
+	Globals.timeCounter = 300
 	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
+	
+func restart():
+	$UI/Failed.visible = true
