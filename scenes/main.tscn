@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwuqfjwfnpc3y"]
+[gd_scene load_steps=11 format=3 uid="uid://cwuqfjwfnpc3y"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_1u0gr"]
 [ext_resource type="Texture2D" uid="uid://cajge6ktekajk" path="res://graphics/UI/green_button02.png" id="2_gp0ap"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://b8l4vaftb840e" path="res://graphics/UI/Kenney Pixel.ttf" id="5_e6bak"]
 [ext_resource type="AudioStream" uid="uid://dln5abwy4ewga" path="res://audio/rollover1.ogg" id="8_1q0gr"]
 [ext_resource type="AudioStream" uid="uid://b7cljvrchawnk" path="res://audio/Main_Menu_Theme.wav" id="8_swlxf"]
+[ext_resource type="PackedScene" uid="uid://5rjdhcqoa8y6" path="res://scenes/Objects/snow_fall.tscn" id="9_f2agq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_346ue"]
 font = ExtResource("5_e6bak")
@@ -72,11 +73,22 @@ vertical_alignment = 1
 [node name="Title" type="RichTextLabel" parent="."]
 offset_left = 112.0
 offset_top = 76.0
-offset_right = 1672.0
+offset_right = 1640.0
 offset_bottom = 232.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.505882, 0.560784, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 20
 theme_override_fonts/normal_font = ExtResource("5_e6bak")
 theme_override_font_sizes/normal_font_size = 160
 text = "THE CURSED FROSTBITE"
+
+[node name="SnowFall" parent="." instance=ExtResource("9_f2agq")]
+position = Vector2(502, -3)
+
+[node name="SnowFall2" parent="." instance=ExtResource("9_f2agq")]
+position = Vector2(1459, -3)
 
 [node name="Audio Manager" type="Node2D" parent="."]
 

@@ -86,8 +86,12 @@ func _on_ui_restart():
 	$UI/Failed.visible = false
 	Globals.is_game_over = false
 	Globals.time_running = true
-	Globals.timeCounter = 300
+	Globals.timeCounter = 600
 	get_tree().change_scene_to_file("res://scenes/levels/level1.tscn")
 	
 func restart():
 	$UI/Failed.visible = true
+
+
+func _on_icy_winds_finished():
+	$Audio/IcyWinds.play()

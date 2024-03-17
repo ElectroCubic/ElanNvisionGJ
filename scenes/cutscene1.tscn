@@ -194,4 +194,5 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="9"]
 stream = ExtResource("3_et0p8")
+volume_db = -2.0
 pitch_scale = 0.87

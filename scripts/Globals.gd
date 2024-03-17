@@ -10,7 +10,7 @@ var time_running = false
 var is_game_over: bool = false
 var is_dark_mode: bool = false
 var decreasingFactor: int = 1
-var timeCounter: int = 300:
+var timeCounter: int = 600:
 	get:
 		return timeCounter
 	set(value):

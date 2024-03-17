@@ -2,7 +2,7 @@ extends Area2D
 
 func _ready():
 	$SelfDestructTimer.start()
-
+	
 func _process(_delta):
 	rotation += 0.01
 	position.y += 5
