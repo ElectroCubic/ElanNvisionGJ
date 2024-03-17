@@ -71,3 +71,5 @@ position = Vector2(5677, -2350)
 
 [node name="Snow Particles" parent="." index="7"]
 visible = false
+
+[connection signal="playerTouch" from="Exit/WinArea" to="." method="_on_win_area_player_touch"]

@@ -15,7 +15,8 @@ func _ready():
 	
 	if Globals.time_running:
 		$UI/TimerDisplay.visible = true
-		Globals.gameTimer()
+		if not Globals.lvlSwitch:
+			Globals.gameTimer()
 	else:
 		$UI/TimerDisplay.visible = false
 
@@ -57,6 +58,7 @@ func _on_player_collided(collision):
 				player.death()
 
 func _on_ui_retry():
+	Globals.lvlSwitch = false
 	$UI/GameOverScreen.visible = false
 	if not Globals.is_tutorial:
 		Globals.time_running = true	
@@ -64,6 +66,7 @@ func _on_ui_retry():
 	get_tree().reload_current_scene()
 
 func _on_ui_restart():
+	Globals.lvlSwitch = false
 	$UI/Failed.visible = false
 	Globals.is_game_over = false
 	Globals.time_running = true
